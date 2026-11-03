@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Портфолио веб-разработчика — HTML, CSS, SCSS">
+  <title>Портфолио — Веб-разработчик</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Шапка сайта -->
+  <header>
+    <nav>
+      <a href="#hero" class="logo">Portfolio</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">О себе</a></li>
+        <li><a href="#skills">Навыки</a></li>
+        <li><a href="#projects">Проекты</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Открыть меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Герой-секция -->
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <h1>Иван Петров</h1>
+        <p class="subtitle">Веб-разработчик</p>
+        <p class="description">
+          Создаю современные и адаптивные веб-сайты с использованием HTML, CSS и JavaScript.
+          Внимание к деталям и чистый код — мой приоритет.
+        </p>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn btn-primary">Смотреть работы</a>
+          <a href="#contact" class="btn btn-outline">Связаться</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- О себе -->
+    <section class="about" id="about">
+      <div class="container">
+        <h2>О себе</h2>
+        <div class="about-grid">
+          <figure class="about-image">
+            <!-- Плейсхолдер — замените на реальное фото -->
+          </figure>
+          <div class="about-text">
+            <article>
+              <p>
+                Привет! Меня зовут Иван, я начинающий веб-разработчик с страстью к созданию красивых
+                и функциональных сайтов. Специализируюсь на фронтенд-разработке.
+              </p>
+              <p>
+                Увлекаюсь изучением новых технологий, следую лучшим практикам и стремлюсь
+                к созданию удобного пользовательского опыта.
+              </p>
+              <p>
+                В свободное время изучаю open-source проекты, читаю техническую литературу
+                и участвую в хакатонах.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Навыки -->
+    <section class="skills" id="skills">
+      <div class="container">
+        <h2>Мои навыки</h2>
+        <nav aria-label="Список навыков">
+          <div class="skills-grid">
+            <article class="skill-card" data-level="85">
+              <div class="skill-icon">🌐</div>
+              <h3 class="skill-name">HTML5</h3>
+              <div class="skill-bar-container">
+                <div class="skill-bar"></div>
+              </div>
+            </article>
+            <article class="skill-card" data-level="80">
+              <div class="skill-icon">🎨</div>
+              <h3 class="skill-name">CSS3</h3>
+              <div class="skill-bar-container">
+                <div class="skill-bar"></div>
+              </div>
+            </article>
+            <article class="skill-card" data-level="75">
+              <div class="skill-icon">📘</div>
+              <h3 class="skill-name">JavaScript</h3>
+              <div class="skill-bar-container">
+                <div class="skill-bar"></div>
+              </div>
+            </article>
+            <article class="skill-card" data-level="70">
+              <div class="skill-icon">🖌</div>
+              <h3 class="skill-name">SCSS</h3>
+              <div class="skill-bar-container">
+                <div class="skill-bar"></div>
+              </div>
+            </article>
+            <article class="skill-card" data-level="65">
+              <div class="skill-icon">⚛</div>
+              <h3 class="skill-name">React</h3>
+              <div class="skill-bar-container">
+                <div class="skill-bar"></div>
+              </div>
+            </article>
+            <article class="skill-card" data-level="60">
+              <div class="skill-icon">📱</div>
+              <h3 class="skill-name">Адаптив</h3>
+              <div class="skill-bar-container">
+                <div class="skill-bar"></div>
+              </div>
+            </article>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Проекты -->
+    <section class="projects" id="projects">
+      <div class="container">
+        <h2>Проекты</h2>
+        <div class="projects-grid">
+          <article>
+            <div class="project-image">📊</div>
+            <div class="project-content">
+              <h3>Дашборд аналитики</h3>
+              <p>Интерактивный дашборд с графиками и таблицами данных.</p>
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+            </div>
+          </article>
+          <article>
+            <div class="project-image">🛒</div>
+            <div class="project-content">
+              <h3>Интернет-магазин</h3>
+              <p>Адаптивный сайт с каталогом, корзиной и оформлением заказа.</p>
+              <div class="tags">
+                <span class="tag">SCSS</span>
+                <span class="tag">React</span>
+                <span class="tag">Адаптив</span>
+              </div>
+            </div>
+          </article>
+          <article>
+            <div class="project-image">📝</div>
+            <div class="project-content">
+              <h3>Блог-платформа</h3>
+              <p>Платформа для публикации статей с комментариями и тегами.</p>
+              <div class="tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">JavaScript</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2>Связаться со мной</h2>
+        <address class="contact-wrapper">
+          <form id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="name">Имя</label>
+              <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+              <span class="error-message" id="nameError">Введите ваше имя</span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
+              <span class="error-message" id="emailError">Введите корректный email</span>
+            </div>
+            <div class="form-group">
+              <label for="message">Сообщение</label>
+              <textarea id="message" name="message" placeholder="Ваше сообщение..." rows="5" maxlength="500" required></textarea>
+              <span class="char-count" id="charCount">0 / 500</span>
+              <span class="error-message" id="messageError">Введите сообщение (минимум 10 символов)</span>
+            </div>
+            <button type="submit" id="submitBtn">Отправить</button>
+            <div class="form-status" id="formStatus"></div>
+          </form>
+        </address>
+      </div>
+    </section>
+  </main>
+
+  <!-- Подвал -->
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Иван Петров. Все права защищены.</p>
+      <ul class="social-links">
+        <li><a href="#" aria-label="GitHub">&#128040;</a></li>
+        <li><a href="#" aria-label="LinkedIn">&#128188;</a></li>
+        <li><a href="#" aria-label="Telegram">&#128222;</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Кнопка "наверх" -->
+  <button class="back-to-top" id="backToTop" aria-label="Наверх">&#9650;</button>
+
+  <!-- Скрипты -->
+  <script src="script.js"></script>
+</body>
+</html>

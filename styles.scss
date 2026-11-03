@@ -1,0 +1,759 @@
+// ==========================================
+// Переменные
+// ==========================================
+$primary-color: #6366f1;
+$primary-hover: #4f46e5;
+$secondary-color: #8b5cf6;
+$text-dark: #1e293b;
+$text-light: #64748b;
+$text-white: #f8fafc;
+$bg-light: #ffffff;
+$bg-dark: #0f172a;
+$bg-gray: #f1f5f9;
+$border-color: #e2e8f0;
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+$radius: 12px;
+$transition: all 0.3s ease;
+
+// ==========================================
+// Миксины
+// ==========================================
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin responsive-breakpoint($point) {
+  @media (max-width: $point) {
+    @content;
+  }
+}
+
+@mixin gradient-bg($color1, $color2) {
+  background: linear-gradient(135deg, $color1, $color2);
+}
+
+@mixin button-base {
+  padding: 12px 28px;
+  border: none;
+  border-radius: $radius;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition;
+}
+
+// ==========================================
+// Сброс стилей
+// ==========================================
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, sans-serif;
+  line-height: 1.6;
+  color: $text-dark;
+  background-color: $bg-light;
+  transition: $transition;
+}
+
+// ==========================================
+// Хедер и навигация
+// ==========================================
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: $shadow-sm;
+  transition: $transition;
+
+  nav {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    @include flex-between;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    @include gradient-bg($primary-color, $secondary-color);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+
+    a {
+      text-decoration: none;
+      color: $text-dark;
+      font-weight: 500;
+      transition: $transition;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: $primary-color;
+        transition: width 0.3s;
+      }
+
+      &:hover {
+        color: $primary-color;
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+
+    span {
+      width: 25px;
+      height: 3px;
+      background: $text-dark;
+      border-radius: 3px;
+      transition: $transition;
+    }
+
+    &.active {
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+    }
+  }
+}
+
+// ==========================================
+// Герой-секция
+// ==========================================
+.hero {
+  min-height: 100vh;
+  @include flex-center;
+  text-align: center;
+  padding: 100px 20px;
+  @include gradient-bg(#0f172a, #1e293b);
+  color: $text-white;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 500px;
+    height: 500px;
+    background: $primary-color;
+    opacity: 0.1;
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: $secondary-color;
+    opacity: 0.1;
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite reverse;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      color: #94a3b8;
+      margin-bottom: 24px;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      color: #cbd5e1;
+      margin-bottom: 32px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      @include button-base;
+
+      &.btn-primary {
+        @include gradient-bg($primary-color, $secondary-color);
+        color: $text-white;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: $shadow-lg;
+        }
+      }
+
+      &.btn-outline {
+        background: transparent;
+        border: 2px solid $primary-color;
+        color: $text-white;
+
+        &:hover {
+          background: $primary-color;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+// ==========================================
+// Секции (общие)
+// ==========================================
+section {
+  padding: 80px 20px;
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 48px;
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: $primary-color;
+      margin: 12px auto 0;
+      border-radius: 2px;
+    }
+  }
+}
+
+// ==========================================
+// О себе
+// ==========================================
+.about {
+  background: $bg-light;
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+
+    .about-image {
+      width: 100%;
+      max-width: 350px;
+      height: 350px;
+      @include gradient-bg($primary-color, $secondary-color);
+      border-radius: 50%;
+      margin: 0 auto;
+      box-shadow: $shadow-lg;
+    }
+
+    .about-text {
+      p {
+        color: $text-light;
+        margin-bottom: 16px;
+        font-size: 1.05rem;
+      }
+    }
+  }
+}
+
+// ==========================================
+// Навыки (интерактивный элемент 1)
+// ==========================================
+.skills {
+  background: $bg-gray;
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+
+    .skill-card {
+      background: $bg-light;
+      padding: 24px 16px;
+      border-radius: $radius;
+      text-align: center;
+      box-shadow: $shadow-sm;
+      transition: $transition;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: $primary-color;
+        transform: scaleX(0);
+        transition: transform 0.3s;
+      }
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: $shadow-md;
+
+        &::before {
+          transform: scaleX(1);
+        }
+      }
+
+      &.active {
+        .skill-bar {
+          width: 100%;
+        }
+      }
+
+      .skill-icon {
+        font-size: 2.5rem;
+        margin-bottom: 8px;
+      }
+
+      .skill-name {
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .skill-bar-container {
+        height: 6px;
+        background: $border-color;
+        border-radius: 3px;
+        overflow: hidden;
+
+        .skill-bar {
+          height: 100%;
+          background: $primary-color;
+          border-radius: 3px;
+          transition: width 0.8s ease;
+          width: 0;
+        }
+      }
+    }
+  }
+}
+
+// ==========================================
+// Проекты
+// ==========================================
+.projects {
+  background: $bg-light;
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+
+    article {
+      background: $bg-light;
+      border-radius: $radius;
+      overflow: hidden;
+      box-shadow: $shadow-sm;
+      transition: $transition;
+      border: 1px solid $border-color;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: $shadow-lg;
+      }
+
+      .project-image {
+        height: 200px;
+        @include gradient-bg($primary-color, $secondary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+      }
+
+      .project-content {
+        padding: 24px;
+
+        h3 {
+          font-size: 1.3rem;
+          margin-bottom: 8px;
+        }
+
+        p {
+          color: $text-light;
+          margin-bottom: 16px;
+          font-size: 0.95rem;
+        }
+
+        .tags {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+          margin-bottom: 16px;
+
+          .tag {
+            background: rgba($primary-color, 0.1);
+            color: $primary-color;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ==========================================
+// Контактная форма (интерактивный элемент 2)
+// ==========================================
+.contact {
+  background: $bg-gray;
+
+  .contact-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: $bg-light;
+    padding: 40px;
+    border-radius: $radius;
+    box-shadow: $shadow-md;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        label {
+          font-weight: 600;
+          font-size: 0.95rem;
+        }
+
+        input,
+        textarea {
+          padding: 12px 16px;
+          border: 2px solid $border-color;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-family: inherit;
+          transition: $transition;
+
+          &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+          }
+
+          &.error {
+            border-color: #ef4444;
+          }
+
+          &.success {
+            border-color: #22c55e;
+          }
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 120px;
+        }
+
+        .error-message {
+          color: #ef4444;
+          font-size: 0.85rem;
+          display: none;
+        }
+
+        .char-count {
+          text-align: right;
+          font-size: 0.85rem;
+          color: $text-light;
+        }
+      }
+
+      button[type='submit'] {
+        @include button-base;
+        @include gradient-bg($primary-color, $secondary-color);
+        color: $text-white;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: $shadow-lg;
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          transform: none;
+        }
+      }
+    }
+
+    .form-status {
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+
+      &.success {
+        display: block;
+        background: #f0fdf4;
+        color: #16a34a;
+      }
+
+      &.error {
+        display: block;
+        background: #fef2f2;
+        color: #dc2626;
+      }
+    }
+  }
+}
+
+// ==========================================
+// Подвал
+// ==========================================
+footer {
+  background: $bg-dark;
+  color: #94a3b8;
+  padding: 40px 20px;
+
+  .footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+
+    a {
+      color: #94a3b8;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: $transition;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+// ==========================================
+// Кнопка "наверх" (интерактивный элемент 3)
+// ==========================================
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  @include gradient-bg($primary-color, $secondary-color);
+  color: $text-white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: $transition;
+  box-shadow: $shadow-md;
+  z-index: 999;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: $shadow-lg;
+    }
+  }
+}
+
+// ==========================================
+// Адаптивность
+// ==========================================
+@include responsive-breakpoint(768px) {
+  header {
+    .nav-links {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: $bg-light;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      gap: 20px;
+      box-shadow: $shadow-md;
+      transform: translateY(-150%);
+      transition: transform 0.3s ease;
+
+      &.mobile-open {
+        transform: translateY(0);
+      }
+    }
+
+    .hamburger {
+      display: flex;
+    }
+  }
+
+  .hero {
+    .hero-content {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  section {
+    padding: 60px 20px;
+
+    h2 {
+      font-size: 2rem;
+    }
+  }
+
+  .about {
+    .about-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+
+  .contact {
+    .contact-wrapper {
+      padding: 24px;
+    }
+  }
+
+  footer {
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+}
+
+@include responsive-breakpoint(480px) {
+  .hero {
+    .hero-content {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  }
+
+  .projects {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .skills {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
